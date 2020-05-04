@@ -1,35 +1,20 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { render, screen } from '@testing-library/angular';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {APP_BASE_HREF} from '@angular/common';
+
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  it('should create the app', async () => {
+    await render(AppComponent, {
       imports: [
-        RouterTestingModule
+        BrowserModule,
+        AppRoutingModule
       ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+      providers: [{ provide: APP_BASE_HREF, useValue: '/'}]
+    });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'angular-trial'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-trial');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-trial app is running!');
+    expect(screen.getByText('angular-trial app is running!')).toBeTruthy();
   });
 });
