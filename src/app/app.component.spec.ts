@@ -15,6 +15,6 @@ describe('AppComponent', () => {
       providers: [{ provide: APP_BASE_HREF, useValue: '/'}]
     });
 
-    expect(screen.getByText('angular-trial app is running!')).toBeTruthy();
+    expect(screen.getByText('Sample Angular Application')).toBeTruthy();
   });
 });
