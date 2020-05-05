@@ -1,7 +1,6 @@
-import { Movie } from '../../models/movie';
+import { Movie } from '../../../../models/movie';
 import { MovieComponent } from './movie.component';
-import { render, screen } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/angular';
 
 describe('MovieComponent', () => {
   it('should render the given movie correctly', async () => {
@@ -12,15 +11,15 @@ describe('MovieComponent', () => {
       PosterName: 'blah.jpg',
     };
 
-    await render(MovieComponent, {
+    const component = await render(MovieComponent, {
       componentProperties: {
         data: movieData,
         isFavourite: false,
       },
     });
 
-    expect(screen.getByText('Test Movie')).toBeInTheDocument();
-    expect(screen.getByText('2020')).toBeInTheDocument();
+    expect(component.getByText('Test Movie')).toBeInTheDocument();
+    expect(component.getByText('2020')).toBeInTheDocument();
   });
 
   it('should render the favourites button', async () => {
@@ -43,10 +42,10 @@ describe('MovieComponent', () => {
       },
     });
 
-    const button = screen.queryByText('Add to favourites');
+    const button = component.queryByText('Add to favourites');
     expect(button).toBeInTheDocument();
 
-    userEvent.click(button);
+    component.click(button);
 
     expect(output).toBeCalledWith(true);
 
@@ -54,7 +53,6 @@ describe('MovieComponent', () => {
       isFavourite: true,
     });
 
-    // Alternative APIs. Don't need screen and userEvents library problably,
 
     const altButton = component.getByText('Remove from favourites');
     expect(altButton).toBeInTheDocument();

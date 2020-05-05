@@ -1,5 +1,5 @@
 import { AppComponent } from './app.component';
-import { render, screen } from '@testing-library/angular';
+import { render } from '@testing-library/angular';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {APP_BASE_HREF} from '@angular/common';
@@ -7,7 +7,7 @@ import {APP_BASE_HREF} from '@angular/common';
 
 describe('AppComponent', () => {
   it('should create the app', async () => {
-    await render(AppComponent, {
+    const component = await render(AppComponent, {
       imports: [
         BrowserModule,
         AppRoutingModule
@@ -15,6 +15,6 @@ describe('AppComponent', () => {
       providers: [{ provide: APP_BASE_HREF, useValue: '/'}]
     });
 
-    expect(screen.getByText('Sample Angular Application')).toBeTruthy();
+    expect(component.getByText('Sample Angular Application')).toBeTruthy();
   });
 });

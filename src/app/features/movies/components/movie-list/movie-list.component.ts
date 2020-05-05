@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieDataService } from '../../services/movie-data.service';
-import {Movie} from '../../models/movie';
+import {Movie} from '../../../../models/movie';
 
 @Component({
   templateUrl: './movie-list.component.html',
