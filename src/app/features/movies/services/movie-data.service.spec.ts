@@ -11,6 +11,7 @@ jest.mock('./static-movies', () => {
 });
 
 describe('MovieDataService', () => {
+
   it('should return the correct list of movies', (done) => {
     const mockLogger: LoggerService = {
       log: jest.fn(),
@@ -19,16 +20,19 @@ describe('MovieDataService', () => {
     const service = new MovieDataService(mockLogger);
 
     service.getAllMovies().subscribe((movies) => {
-      expect(movies).toEqual([
+      expect(movies).toEqual(
+        [
         {
           Type: 'movie',
           Title: 'Test',
           Year: '2000',
           PosterName: 'TestPoster',
         },
-      ]);
+      ]
+      );
 
       done();
     });
   });
+
 });
