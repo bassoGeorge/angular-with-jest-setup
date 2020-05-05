@@ -1,4 +1,4 @@
-module.exports = [ {
+export default [ {
   "PosterName" : "xmen-last-stand.jpg",
   "Title" : "X-Men: The Last Stand",
   "Type" : "movie",
